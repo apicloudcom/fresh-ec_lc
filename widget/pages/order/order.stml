@@ -1,0 +1,335 @@
+<template>
+	<safe-area class="main">
+		<view class="nav-header">
+			<view class="nav-header-button nav-left-button" @click="onLeftButton">
+				<img src="../../image/back.png" mode="widthFix" class="nav-bar-left-img" />
+			</view>
+			<text class="nav-header-title">确认订单</text>
+			<view></view>
+		</view>
+		<scroll-view class="scrollView" scroll-y='true'>
+			<view class="info-addr">
+				<img class="addr-icon" src="../../image/icon_address.png" />
+				<view class="addr-middle">
+					<text class="text-black">收货人: APICloud 15100000000</text>
+					<view class="addr-bottom">
+						<text class="text-red">[公司]</text>
+						<text class="text-grey">中关村科技园区电子城科技园</text>
+					</view>
+				</view>
+				<img class="addr-arrow-icon" src="../../image/item_user_address_right.png" />
+			</view>
+			<view class="info-order">
+				<view class="item-desc">
+					<img class="item-icon" src="../../image/icon_order.png" />
+					<text class="text-black">订单信息</text>
+				</view>
+				<view>
+					<view class="wareItem">
+						<img class="thumbnail"
+							src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/116d90e46e369dbffd0198026efe35ab.jpg"
+							placeholder="../../image/default_square.png" />
+						<view class="wareInfo">
+							<text class="text-black">佳沛绿奇异果 4个</text>
+							<text class="text-black">￥18.9</text>
+						</view>
+						<text class="info-wareCount">1</text>
+					</view>
+					<view class="wareItem">
+						<img class="thumbnail"
+							src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/f568314a65b1d23ae06257e953501af9.jpg"
+							placeholder="../../image/default_square.png" />
+						<view class="wareInfo">
+							<text class="text-black">泰国龙眼 2斤</text>
+							<text class="text-black">￥29.9</text>
+						</view>
+						<text class="info-wareCount">1</text>
+					</view>
+				</view>
+				<view class="list-item">
+					<text class="text-black">数量：</text><text class="text-black">2件</text>
+				</view>
+				<view class="list-item">
+					<text class="text-black">优惠券：</text>
+					<view class="list-item-coupon">
+						<text class="text-grey">未使用 </text>
+						<image style="width:9px;height:14px;" src="../../image/arrow_right.png"></image>
+					</view>
+				</view>
+				<view class="list-item">
+					<text class="text-black">商品金额：</text><text class="text-red">￥48.8</text>
+				</view>
+				<view class="list-item">
+					<text class="text-black">运费：</text><text class="text-red">￥0</text>
+				</view>
+				<view class="list-item">
+					<text class="text-black">优惠金额：</text><text class="text-red">￥0</text>
+				</view>
+				<view class="list-item-totalPrice">
+					<text class="text-black">实付款：</text><text class="text-red">￥48.8</text>
+				</view>
+			</view>
+			<view class="info-pay">
+				<view class="item-desc">
+					<image class="item-icon" src="../../image/order_pay.png" />
+					<text class="text-black">付款方式</text>
+				</view>
+				<view class="list-item" data-name="余额支付" @click="onpaymethodchange('余额支付')">
+					<view class="pay-left">
+						<img class="payIcon" src="../../image/icon_balance_pay.png" />
+						<text class="payName">余额支付</text>
+						<img style="width:17px;height:17px;" src="../../image/recommend.png" />
+					</view>
+					<img style="width:25px;height:25px;" src="../../image/order_on.png" />
+				</view>
+				<view class="list-item" data-name="微信支付" @click="onpaymethodchange('微信支付')">
+					<view class="pay-left">
+						<img class="payIcon" src="../../image/icon_wxpay.png" />
+						<text class="payName">微信支付</text>
+						<img style="width:17px;height:17px;" src="../../image/recommend.png" />
+					</view>
+					<img style="width:25px;height:25px;" src="../../image/order_off.png" />
+				</view>
+				<view class="list-item" data-name="支付宝" @click="onpaymethodchange('支付宝')">
+					<view class="pay-left">
+						<img class="payIcon" src="../../image/icon_alipay.png" />
+						<text class="payName">支付宝</text>
+					</view>
+					<img style="width:25px;height:25px;" src="../../image/order_off.png" />
+				</view>
+			</view>
+		</scroll-view>
+		<view class="footer">
+			<text class="footer-price">总金额: ￥48.8</text>
+			<img src="../../image/confirm.png" class="buy-button" @click="fnBuy" />
+		</view>
+	</safe-area>
+</template>
+<script>
+export default {
+	name: 'order',
+	data() {
+		return {
+			dataList: [],
+			count: 0,
+			price: 0,
+			totalPrice: 0,
+			freight: 5.0,
+			discounts: 0,
+			addressInfo: {
+				name: 'APICloud',
+				mobile: '15100000000',
+				typeDesc: '公司',
+				address: '中关村科技园区电子城科技园'
+			},
+			payList: [{
+				icon: '../../image/icon_balance_pay.png',
+				name: '余额支付',
+				recommend: true
+			}, {
+				icon: '../../image/icon_wxpay.png',
+				name: '微信支付',
+				recommend: true
+			}, {
+				icon: '../../image/icon_alipay.png',
+				name: '支付宝',
+				recommend: false
+			}],
+			payMethod: '微信支付'
+		}
+	},
+	methods: {
+		onLeftButton() {
+			api.closeWin()
+		},
+		onpaymethodchange(name) {
+			api.toast({
+				msg:'付款方式为' + name,
+				location: 'middle'
+			})
+		},
+		fnBuy() {
+			api.toast({
+				msg: '演示版本，不能支付',
+				location: 'middle'
+			});
+		}
+	}
+}
+</script>
+<style>
+.main {
+	width: 100%;
+	height: 100%;
+}
+.nav-header {
+	background-color: #e3007f;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 44px;
+	flex-shrink: 0;
+}
+.nav-header-title {
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+}
+.nav-header-button {
+	flex-direction: row;
+	align-items: center;
+	min-width: 44px;
+	height: 100%;
+}
+.nav-header-button:active {
+	opacity: 0.5;
+}
+.nav-left-button {
+	justify-content: flex-start;
+	padding-left: 10px;
+}
+.nav-bar-left-img {
+	width: 11px;
+}
+.nav-header-text {
+	color: #fff;
+	font-size: 17px;
+}
+.scrollView {
+	flex: 1;
+	width: 100%;
+	background-color: #f0f0f0;
+}
+.info-addr {
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+	height: 70px;
+	padding: 10px 0;
+	background-color: #fff;
+}
+.addr-icon {
+	width: 19px;
+	height: 24px;
+	margin: 0 12px;
+}
+.addr-middle {
+	flex: 1;
+	justify-content: space-between;
+	height: 100%;
+}
+.addr-bottom {
+	flex-direction: row;
+}
+.text-red {
+	font-size: 14px;
+	color: #e3007f;
+	font-weight: 400;
+}
+.text-grey {
+	color: #888;
+	font-size: 14px;
+	font-weight: 400;
+}
+.text-black {
+	color: #000;
+	font-size: 14px;
+	font-weight: 400;
+}
+.addr-arrow-icon {
+	width: 8px;
+	height: 16px;
+	margin: 0 12px;
+}
+.item-desc {
+	flex-direction: row;
+	align-items: center;
+	height: 40px;
+	margin-top: 8px;
+	background-color: #fff;
+}
+.item-icon {
+	width: 14px;
+	height: 17px;
+	margin: 0 10px;
+}
+.wareItem {
+	flex-direction: row;
+	height: 70px;
+	padding: 8px 10px;
+	background-color: #f1f5f8;
+	border-bottom: 1px solid #d1d1d1;
+}
+.thumbnail {
+	width: 54px;
+	height: 54px;
+	margin-right: 10px;
+}
+.wareInfo {
+	flex: 1;
+	justify-content: space-between;
+}
+.info-wareCount {
+	align-self: flex-end;
+    font-size: 14px;
+    color: #333;
+}
+.list-item {
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px;
+	height: 40px;
+	background-color: #fff;
+	border-bottom: 1px solid #d1d1d1;
+}
+.list-item-coupon {
+	flex-direction: row;
+	align-items: center;
+}
+.list-item-totalPrice {
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 0 10px;
+	height: 40px;
+	background-color: #fff;
+}
+.pay-left {
+	flex-direction: row;
+	align-items: center;
+}
+.payIcon {
+	width: 61px;
+	height: 30px;
+}
+.payName {
+	margin: 0 8px;
+	color: #000;
+    font-size: 14px;
+}
+.footer {
+	flex-direction: row;
+	align-items: center;
+	padding-left: 10px;
+	width: 100%;
+	height: 50px;
+	background-color: black;
+}
+.footer-price {
+    font-size: 16px;
+	color: #fff;
+	margin-left: 10px;
+}
+.buy-button {
+	position: absolute;
+	width: 112px;
+	height: 40px;
+	right: 0;
+	top: 5px;
+}
+.safe-area {
+	background-color: #000;
+}
+</style>

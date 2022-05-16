@@ -1,0 +1,77 @@
+<template>
+    <safe-area class="cityselector-main">
+        <text class="cityselector-close" @click="closeAction">×</text>
+        <text class="cityselector-title">选择所需服务的地区</text>
+        <scroll-view class="cityselector-section" scroll-y='true'>
+            <view>
+                <text class="cityselector-city" @click="fnSelectCity('北京市')">北京市</text>
+                <text class="cityselector-city" @click="fnSelectCity('郑州市')">郑州市</text>
+                <text class="cityselector-city" @click="fnSelectCity('天津市')">天津市</text>
+                <text class="cityselector-city" @click="fnSelectCity('上海市')">上海市</text>
+                <text class="cityselector-city" @click="fnSelectCity('广州')">广州</text>
+            </view>
+        </scroll-view>
+    </safe-area>
+</template>
+<script>
+export default{
+    name:'cityselector',
+    data(){
+        return {
+            dataList: []
+        }
+    },
+    methods:{
+        closeAction() {
+            api.closeFrame({
+                name: 'citySelector'
+            })
+        },
+        closeFrame(currentCity) {
+            this.fire('result', currentCity);
+        },
+        fnSelectCity(name) {
+            api.sendEvent({
+                name:'fnSelectCity',
+                extra: {
+                    name
+                }
+            })
+        }
+    }
+}
+</script>
+<style>
+    .cityselector-main {
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+    }
+    .cityselector-close {
+        width: 50px;
+        height: 35px;
+        font-size: 35px;
+        color: #fff;
+        text-align: center;
+    }
+    .cityselector-title {
+        align-self: center;
+        width: 80%;
+        padding: 10px;
+        border-bottom: 2px solid #c8026f;
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+    }
+    .cityselector-section {
+        width: 100%;
+        flex: 1;
+    }
+    .cityselector-city {
+        width: 100%;
+        height: 55px;
+        line-height: 55px;
+        text-align: center;
+        font-size: 22px;
+        color: #fff;
+    }
+</style>

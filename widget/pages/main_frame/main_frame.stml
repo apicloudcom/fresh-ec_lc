@@ -1,0 +1,338 @@
+<template>
+    <scroll-view class="main" :scroll-y="true" :show-scrollbar="false"> 
+        <view class="header">
+            <img
+                class="banner"
+                src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/165f65aa5d8c3f09a55ab02ba4adf6e2.png"
+                placeholder="../../image/default_rect.png"
+                thumbnail="false"/>
+        </view>
+        <view class="cell">
+            <view
+                class="container"
+                @click="fnOpenDetailWin('56c94a0426f863e874c76caf', 1)">
+                <img
+                    class="thumbnail"
+                    src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/116d90e46e369dbffd0198026efe35ab.jpg"
+                    placeholder="../../image/default_square.png"/>
+                <view class="info">
+                    <text class="info-name">佳沛绿奇异果 4个</text>
+                    <text class="info-description">享受清爽汁水融进齿间感觉</text>
+                    <text class="info-price">￥18.9</text>
+                    <text class="info-origin-price">￥25.8</text>
+                </view>
+                <view class="control">
+                    <img class='minus' data-index={0} src="../../image/minus.png" @click="fnMinus"/>
+                    <text class="count">1</text>
+                    <img class="add" data-index={0} src="../../image/add.png" @click="fnAdd"/>
+                </view>
+            </view>
+        </view>
+        <view class="cell">
+            <view
+                class="container"
+                @click="fnOpenDetailWin('56c94a0426f863e874c76cb0', 0)">
+                <img
+                    class="thumbnail"
+                    src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/f568314a65b1d23ae06257e953501af9.jpg"
+                    placeholder="../../image/default_square.png"/>
+                <view class="info">
+                    <text class="info-name">泰国龙眼 2斤</text>
+                    <text class="info-description">肉肉的 甜甜的</text>
+                    <text class="info-price">￥29.9</text>
+                    <text class="info-origin-price">￥39.9</text>
+                </view>
+                <view class="control">
+                    <img class='none' data-index={1} src="../../image/minus.png" @click="fnMinus"/>
+                    <text class="none">0</text>
+                    <img class="add" data-index={1} src="../../image/add.png" @click="fnAdd"/>
+                </view>
+            </view>
+        </view>
+        <view class="cell">
+            <view
+                class="container"
+                @click="fnOpenDetailWin('56c94a0426f863e874c76cb1', 0)">
+                <img
+                    class="thumbnail"
+                    src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/5bfeda41003fba5faad8c58f413ac900.jpg"
+                    placeholder="../../image/default_square.png"/>
+                <view class="info">
+                    <text class="info-name">四川丑柑 2斤</text>
+                    <text class="info-description">丑丑的外表埋藏120%超甜内心</text>
+                    <text class="info-price">￥24.9</text>
+                    <text class="info-origin-price">￥28.9</text>
+                </view>
+                <view class="control">
+                    <img class='none' data-index={2} src="../../image/minus.png" @click="fnMinus"/>
+                    <text class="none">0</text>
+                    <img class="add" data-index={2} src="../../image/add.png" @click="fnAdd"/>
+                </view>
+            </view>
+        </view>
+        <view class="cell">
+            <view
+                class="container"
+                @click="fnOpenDetailWin('56c94a0426f863e874c76cb2', 0)">
+                <img
+                    class="thumbnail"
+                    src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/ff88121030b3a32f7060c9d82c1e00ed.jpg"
+                    placeholder="../../image/default_square.png"/>
+                <view class="info">
+                    <text class="info-name">赣南脐橙 4个</text>
+                    <text class="info-description">原产地 不催熟 不打蜡</text>
+                    <text class="info-price">￥16.9</text>
+                    <text class="info-origin-price">￥24.9</text>
+                </view>
+                <view class="control">
+                    <img class='none' data-index={3} src="../../image/minus.png" @click="fnMinus"/>
+                    <text class="none">0</text>
+                    <img class="add" data-index={3} src="../../image/add.png" @click="fnAdd"/>
+                </view>
+            </view>
+        </view>
+        <view class="cell">
+            <view
+                class="container"
+                @click="fnOpenDetailWin('56c94a0426f863e874c76cb3', 0)">
+                <img
+                    class="thumbnail"
+                    src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/913dbcb4879dba48f9b861e2ce1d9514.jpg"
+                    placeholder="../../image/default_square.png"/>
+                <view class="info">
+                    <text class="info-name">新疆库尔勒香梨 10个</text>
+                    <text class="info-description">老板只让采孔雀河核心产区的</text>
+                    <text class="info-price">￥19.9</text>
+                    <text class="info-origin-price">￥25.9</text>
+                </view>
+                <view class="control">
+                    <img class='none' data-index={4} src="../../image/minus.png" @click="fnMinus"/>
+                    <text class="none">0</text>
+                    <img class="add" data-index={4} src="../../image/add.png" @click="fnAdd"/>
+                </view>
+            </view>
+        </view>
+        <view class="cell">
+            <view
+                class="container"
+                @click="fnOpenDetailWin('56c94a0426f863e874c76cb4', 0)">
+                <img
+                    class="thumbnail"
+                    src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/fc611dfaa27138e09f691d5287d9da15.jpg"
+                    placeholder="../../image/default_square.png"/>
+                <view class="info">
+                    <text class="info-name">【2袋】恒都澳洲牛腩块 400g</text>
+                    <text class="info-description">肉肉的 甜甜的</text>
+                    <text class="info-price">￥49.9</text>
+                    <text class="info-origin-price">￥65.9</text>
+                </view>
+                <view class="control">
+                    <img class='none' data-index={5} src="../../image/minus.png" @click="fnMinus"/>
+                    <text class="none">0</text>
+                    <img class="add" data-index={5} src="../../image/add.png" @click="fnAdd"/>
+                </view>
+            </view>
+        </view>
+        <view class="footer">
+            <text class="loadDesc">没有啦！</text>
+        </view>
+    </scroll-view>
+</template>
+<script>
+import $kn from "../../script/kn.js"
+export default {
+    name: 'main_frame',
+    data() {
+        return {
+            bannerUrl: '',
+            skip: 0,
+            LIMIT: 10,
+            haveMoreData: true,
+            refreshState: 'normal'
+        }
+    },
+    methods: {
+        fnOpenDetailWin(id, wareCount) {
+            api.openWin({
+                name: 'ware'+id,
+                url: '../ware/ware.stml',
+                pageParam: {
+                    wareId: id,
+                    wareCount: wareCount
+                },
+                animation: {
+                    type: "fade"
+                }
+            });
+        },
+        fnMinus() {
+            api.toast({
+                msg:'减少数量',
+				location: 'middle'
+            })
+        },
+        fnAdd() {
+            api.toast({
+                msg:'增加数量',
+				location: 'middle'
+            })
+        }
+    }
+}
+</script>
+<style>
+    .refresh {
+        align-items: center;
+        justify-content: center;
+    }
+    .refreshStateDesc {
+        color: #e3007f;
+        font-size: 13px;
+        line-height: 40px;
+    }
+    .refreshIcon-normal {
+        position: absolute;
+        width: 25px;
+        height: 22px;
+        bottom: 21px;
+        left: 70px;
+        transition-property: transform;
+        transition-duration: 100ms;
+        transform: rotate(0);
+        visibility: visible;
+    }
+    .refreshIcon-dragging {
+        transform: rotate(180deg);
+    }
+    .refreshIcon-refreshing {
+        visibility: hidden;
+    }
+    .refreshLoading {
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        bottom: 21px;
+        left: 70px;
+        visibility: hidden;
+    }
+    .refreshLoading-refreshing {
+        visibility: visible;
+    }
+
+    .main {
+        height: 100%;
+        width: 100%;
+    }
+
+    .header {
+        width: 100%;
+        padding: 4px 8px;
+    }
+    
+    .banner {
+        width: 100%;
+    }
+
+    .cell {
+        height: 130px;
+        padding: 0 8px;
+    }
+
+    .container {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        border-bottom: 0.5px solid #d1d1d1;
+    }
+
+    .container:active {
+        background-color: #f8f8f8;
+    }
+    
+    .thumbnail {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .info {
+        width: 100%;
+        height: 100px;
+        padding-left: 8px;
+        justify-content: center;
+    }
+    
+    .info-name {
+        font-size: 16px;
+        color: #000;
+        font-weight: 500;
+    }
+
+    .info-description {
+        font-size: 14px;
+        color: gray;
+    }
+    
+    .info-price {
+        font-size: 14px;
+        color: #e3007f;
+    }
+    
+    .info-origin-price {
+        font-size: 11px;
+        color: #c0c0c0;
+        text-decoration: line-through;
+    }
+
+    .control {
+        flex-direction: row;
+        position: absolute;
+        right: 0;
+        bottom: 20px;
+    }
+    
+    .minus, .add {
+        display: flex;
+        width: 25px;
+        height: 25px;
+    }
+
+    .minus:active {
+        opacity: 0.7;
+    }
+
+    .add:active {
+        opacity: 0.7;
+    }
+
+    .none {
+        display: none;
+    }
+    
+    .count {
+        display: block;
+        width: 40px;
+        height: 24px;
+        line-height: 24px;
+        margin: 0 5px;
+        color: #444;
+        font-size: 14px;
+        text-align: center;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+    }
+    
+    .footer {
+        height: 44px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loadDesc {
+        font-size: 14px;
+        color: #999;
+        width: 200px;
+        text-align: center;
+    }
+</style>

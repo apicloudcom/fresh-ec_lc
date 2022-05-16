@@ -1,0 +1,331 @@
+<template>
+	<safe-area class="main">
+		<view class="nav-header">
+			<view class="nav-header-button nav-left-button" @click="onLeftButton">
+				<img src="../../image/back.png" mode="widthFix" class="nav-bar-left-img" />
+			</view>
+			<text class="nav-header-title">购物车</text>
+			<view></view>
+		</view>
+		<view class="content">
+			<scroll-view scroll-y="true" class="listView">
+				<view class="cell">
+					<view data-id={'56c94a0426f863e874c76caf'} data-wareCount={1} class="container"
+						@click="fnOpenDetailWin('56c94a0426f863e874c76caf', 1)">
+						<label>
+                            <img src="../../image/order_on.png" alt="checkbox" class="checkbox-icon"/>
+						</label>
+						<img
+                            class="thumbnail"
+                            src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/116d90e46e369dbffd0198026efe35ab.jpg"
+                            placeholder="../../image/default_square.png"/>
+						<view class="info">
+							<text class="info-name">佳沛绿奇异果 4个</text>
+							<text class="info-description">享受清爽汁水融进齿间感觉</text>
+							<text class="info-price">￥18.9</text>
+							<text class="info-origin-price">￥25.8</text>
+						</view>
+						<view class="control">
+							<img
+                                class="minus"
+								src="../../image/minus.png"
+                                @click="fnMinus">
+								<text class="count">1</text>
+								<img class="add" src="../../image/add.png" @click="fnAdd">
+						</view>
+					</view>
+				</view>
+			</scroll-view>
+			<!-- <view class="empty">
+				<img class="empty-icon" src="../../image/shoppingcart_empty.png"/>
+				<view class="closeBtn" @click="fnCloseWin"></view>
+			</view> -->
+		</view>
+		<view class="footer">
+			<label class="left">
+                <img src="../../image/order_on.png" alt="checkbox" class="checkbox-icon" @click="fnSelectAll"/>
+				<view>
+					<text style="color:#000;">全选</text>
+					<text class="bottomInfo">已选 1 件</text>
+				</view>
+			</label>
+			<view class="right">
+				<view class="right-info">
+					<view class="right-info-top">
+						<text class="footer-text">总金额:</text><text class="amount">￥18.9</text>
+					</view>
+					<text class="bottomInfo">不含运费</text>
+				</view>
+				<img class="buy-button" src="../../image/buy.png" @click="fnOpenOrderWin" />
+			</view>
+		</view>
+	</safe-area>
+</template>
+<script>
+import $kn from "../../script/kn.js"
+export default {
+	name: 'shoppingcart',
+	data() {
+		return {
+			haveData: false,
+			dataList: [],
+			count: 0,
+			amount: 0
+		}
+	},
+	methods: {
+		onLeftButton() {
+			api.closeWin()
+		},
+		fnOpenDetailWin(id, wareCount) {
+			api.openWin({
+				name: 'ware' + id,
+				url: '../ware/ware.stml',
+				pageParam: {
+					wareId: id,
+					wareCount: wareCount
+				},
+				animation: {
+					type: "fade"
+				}
+			});
+		},
+		fnMinus() {
+			api.toast({
+                msg:'减少商品数量'
+            })
+		},
+		fnAdd(e) {
+			api.toast({
+                msg:'增加商品数量'
+            })
+		},
+		fnSelectAll(e) {
+			api.toast({
+                msg:'全选'
+            })
+		},
+		fnCloseWin() {
+			api.closeWin();
+		},
+		fnOpenOrderWin() {
+			api.openWin({
+				name: 'order',
+				url: '../order/order.stml',
+				pageParam: {
+					dataList: dataList
+				}
+			});
+		}
+	}
+}
+</script>
+<style>
+.main {
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+}
+.nav-header {
+	background-color: #e3007f;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 44px;
+	flex-shrink: 0;
+}
+.nav-header-title {
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+}
+.nav-header-button {
+	flex-direction: row;
+	align-items: center;
+	min-width: 44px;
+	height: 100%;
+}
+.nav-header-button:active {
+	opacity: 0.5;
+}
+.nav-left-button {
+	justify-content: flex-start;
+	padding-left: 10px;
+}
+.nav-bar-left-img {
+	width: 11px;
+}
+.nav-header-text {
+	color: #fff;
+	font-size: 17px;
+}
+.content {
+	flex: 1;
+}
+.empty {
+	align-items: center;
+	flex: 1;
+	width: 100%;
+}
+.empty-icon {
+	width: 115px;
+	height: 190px;
+	margin-top: 50px;
+}
+.closeBtn {
+	position: absolute;
+	width: 100px;
+	height: 30px;
+	top: 205px;
+}
+.listView {
+	width: 100%;
+	height: 100%;
+	background-color: #f1f1f1;
+}
+
+.cell {
+	height: 130px;
+}
+
+.container {
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+	height: 120px;
+	background-color: #fff;
+}
+
+.container:active {
+	background-color: #f8f8f8;
+}
+
+.thumbnail {
+	width: 100px;
+	height: 100px;
+}
+
+.info {
+	flex: 1;
+	height: 100px;
+	padding-left: 8px;
+	justify-content: center;
+}
+
+.info-name {
+	font-size: 16px;
+	color: #000;
+	font-weight: 500;
+}
+
+.info-description {
+	font-size: 14px;
+	color: gray;
+}
+
+.info-price {
+	font-size: 14px;
+	color: #e3007f;
+}
+
+.info-origin-price {
+	font-size: 11px;
+	color: #c0c0c0;
+	text-decoration: line-through;
+}
+
+.control {
+	flex-direction: row;
+	position: absolute;
+	right: 10px;
+	bottom: 20px;
+}
+
+.minus,
+.add {
+	display: flex;
+	width: 25px;
+	height: 25px;
+}
+
+.minus:active {
+	opacity: 0.7;
+}
+
+.add:active {
+	opacity: 0.7;
+}
+
+.none {
+	display: none;
+}
+
+.count {
+	display: block;
+	width: 40px;
+	height: 24px;
+	line-height: 24px;
+	margin: 0 5px;
+	color: #444;
+	font-size: 14px;
+	text-align: center;
+	border-radius: 12px;
+	border: 1px solid #ddd;
+	background-color: #fff;
+}
+.footer {
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	height: 50px;
+	border-top: 1px solid #d1d1d1;
+}
+.left {
+	flex-direction: row;
+	align-items: center;
+	height: 100%;
+}
+.checkbox {
+	margin: 8px 8px;
+	width: 15px;
+	height: 15px;
+}
+.bottomInfo {
+	font-size: 10px;
+	color: #888;
+}
+.right {
+	flex-direction: row;
+	align-items: center;
+	height: 100%;
+}
+.right-info {
+	align-items: flex-end;
+	margin-right: 5px;
+}
+.right-info-top {
+    display: flex;
+	flex-direction: row;
+    height: 30px;
+    align-items: center;
+}
+.amount {
+	color: #e3007f;
+    font-size: 16px;
+    font-weight: 400;
+}
+.buy-button {
+	width: 94px;
+	height: 37px;
+}
+.checkbox-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 6px;
+}
+.footer-text {
+    font-size: 14px;
+    color: #333;
+}
+</style>

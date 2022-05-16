@@ -1,0 +1,29 @@
+<template>
+    <safe-area class="billhistory-main">
+        <text class="billhistory-text">暂无记录</text>
+    </safe-area>
+</template>
+<script>
+export default{
+    name:'billhistory',
+    data(){
+        return{
+           
+        }
+    },
+    methods:{
+        
+    }
+}
+</script>
+<style>
+.billhistory-main{
+    background-color: #fff;
+}
+.billhistory-text {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+    align-self: center;
+}
+</style>

@@ -1,0 +1,552 @@
+<template>
+	<safe-area class="main">
+		<view class="header-part">
+			<view class="header-nav">
+				<view class="header-left" @click="fnOpenCitySelectorFrame">
+					<image class="header-left-arrow" src="../../image/arrow_down.png"></image>
+					<text class="header-left-city" id="city">北京市</text>
+				</view>
+				<text class="header-title">生鲜电商</text>
+				<view class="header-right" onclick="fnOpenPersonalCenterWin();">
+					<image class="header-right-icon" src="../../image/home_membercenter.png"></image>
+				</view>
+			</view>
+		</view>
+		<view class="nav">
+			<text class="nav-menu nav-menu-selected" @click="fnSetNavMenuIndex(0, '全部')">全部</text>
+			<text class="nav-menu" @click="fnSetNavMenuIndex(1, '水果')">水果</text>
+			<text class="nav-menu" @click="fnSetNavMenuIndex(2, '食材')">食材</text>
+			<text class="nav-menu" @click="fnSetNavMenuIndex(3, '零食')">零食</text>
+			<text class="nav-menu" @click="fnSetNavMenuIndex(4, '牛奶')">牛奶</text>
+			<text class="nav-menu" @click="fnSetNavMenuIndex(5, '蔬菜')">蔬菜</text>
+		</view>
+		<scroll-view scroll-y='true' class="warelist" enable-back-to-top
+			refresher-triggered={false} onrefresherrefresh={this.onrefresherrefresh}
+			onscrolltolower={this.onscrolltolower}>
+			<view class="header">
+				<img class="banner"
+					src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/165f65aa5d8c3f09a55ab02ba4adf6e2.png"
+					placeholder="../../image/default_rect.png" thumbnail="false" />
+			</view>
+			<view>
+				<view class="cell">
+					<view
+                        class="container"
+						@click="fnOpenDetailWin('56c94a0426f863e874c76caf', 1)">
+						<img
+                            class="thumbnail"
+                            src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/116d90e46e369dbffd0198026efe35ab.jpg"
+                            placeholder="../../image/default_square.png"/>
+						<view class="info">
+							<text class="info-name">佳沛绿奇异果 4个</text>
+							<text class="info-description">享受清爽汁水融进齿间感觉</text>
+							<text class="info-price">￥18.9</text>
+							<text class="info-origin-price">￥25.8</text>
+						</view>
+						<view class="control">
+							<img
+                                class="minus"
+								src="../../image/minus.png"
+                                @click="fnMinus">
+								<text class="count">1</text>
+								<img class="add" src="../../image/add.png" @click="fnAdd">
+						</view>
+					</view>
+				</view>
+                <view class="cell">
+					<view
+                        class="container"
+						@click="fnOpenDetailWin('56c94a0426f863e874c76cb0', 0)">
+						<img
+                            class="thumbnail"
+                            src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/f568314a65b1d23ae06257e953501af9.jpg"
+                            placeholder="../../image/default_square.png"/>
+						<view class="info">
+							<text class="info-name">泰国龙眼 2斤</text>
+							<text class="info-description">肉肉的 甜甜的</text>
+							<text class="info-price">￥29.9</text>
+							<text class="info-origin-price">￥39.9</text>
+						</view>
+						<view class="control">
+							<image
+                                class="none"
+								src="../../image/minus.png"
+                                @click="fnMinus">
+								<text class="none">0</text>
+								<image class="add" src="../../image/add.png" @click="fnAdd">
+						</view>
+					</view>
+				</view>
+                <view class="cell">
+					<view
+                        class="container"
+						@click="fnOpenDetailWin('56c94a0426f863e874c76cb1', 0)">
+						<img
+                            class="thumbnail"
+                            src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/5bfeda41003fba5faad8c58f413ac900.jpg"
+                            placeholder="../../image/default_square.png"/>
+						<view class="info">
+							<text class="info-name">四川丑柑 2斤</text>
+							<text class="info-description">丑丑的外表埋藏120%超甜内心</text>
+							<text class="info-price">￥24.9</text>
+							<text class="info-origin-price">￥28.9</text>
+						</view>
+						<view class="control">
+							<image
+                                class="none"
+								src="../../image/minus.png"
+                                @click="fnMinus">
+								<text class="none">0</text>
+								<image class="add" src="../../image/add.png" @click="fnAdd">
+						</view>
+					</view>
+				</view>
+                <view class="cell">
+					<view
+                        class="container"
+						@click="fnOpenDetailWin('56c94a0426f863e874c76cb2', 0)">
+						<img
+                            class="thumbnail"
+                            src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/ff88121030b3a32f7060c9d82c1e00ed.jpg"
+                            placeholder="../../image/default_square.png"/>
+						<view class="info">
+							<text class="info-name">赣南脐橙 4个</text>
+							<text class="info-description">原产地 不催熟 不打蜡</text>
+							<text class="info-price">￥16.9</text>
+							<text class="info-origin-price">￥24.9</text>
+						</view>
+						<view class="control">
+							<image
+                                class="none"
+								src="../../image/minus.png"
+                                @click="fnMinus">
+								<text class="none">0</text>
+								<image class="add" src="../../image/add.png" @click="fnAdd">
+						</view>
+					</view>
+				</view>
+				<view class="cell">
+					<view
+                        class="container"
+						@click="fnOpenDetailWin('56c94a0426f863e874c76cb3', 0)">
+						<img
+                            class="thumbnail"
+                            src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/913dbcb4879dba48f9b861e2ce1d9514.jpg"
+                            placeholder="../../image/default_square.png"/>
+						<view class="info">
+							<text class="info-name">新疆库尔勒香梨 10个</text>
+							<text class="info-description">老板只让采孔雀河核心产区的</text>
+							<text class="info-price">￥19.9</text>
+							<text class="info-origin-price">￥25.9</text>
+						</view>
+						<view class="control">
+							<image
+                                class="none"
+								src="../../image/minus.png"
+                                @click="fnMinus">
+								<text class="none">0</text>
+								<image class="add" src="../../image/add.png" @click="fnAdd">
+						</view>
+					</view>
+				</view>
+				<view class="cell">
+					<view
+                        class="container"
+						@click="fnOpenDetailWin('56c94a0426f863e874c76cb4', 0)">
+						<img
+                            class="thumbnail"
+                            src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/fc611dfaa27138e09f691d5287d9da15.jpg"
+                            placeholder="../../image/default_square.png"/>
+						<view class="info">
+							<text class="info-name">【2袋】恒都澳洲牛腩块 400g</text>
+							<text class="info-description">切好成块儿的方便牛腩肉</text>
+							<text class="info-price">￥49.9</text>
+							<text class="info-origin-price">￥65.9</text>
+						</view>
+						<view class="control">
+							<image
+                                class="none"
+								src="../../image/minus.png"
+                                @click="fnMinus">
+								<text class="none">0</text>
+								<image class="add" src="../../image/add.png" @click="fnAdd">
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="footer">
+				<text class="loadDesc">没有啦！</text>
+			</view>
+		</scroll-view>
+		<view class="minicart">
+			<minicart></minicart>
+		</view>
+	</safe-area>
+</template>
+<script>
+export default {
+	name: 'main',
+	data() {
+		return {
+			cityName: '选择地区',
+			wareTypeList: [
+				{
+					"id": "d34d1470-2bd3-11eb-946e-d192726402e2",
+					"name": "全部",
+					"banner": "http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/165f65aa5d8c3f09a55ab02ba4adf6e2.png"
+				},
+				{
+					"id": "56c80da883af652643474b6b",
+					"name": "水果",
+					"banner": "http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/064c7fd3231b97b22a582231042d6a84.png",
+					"createdAt": "2016-02-20T06:54:32.808Z",
+					"updatedAt": "2020-06-10T01:59:39.566Z"
+				},
+				{
+					"id": "56c80db78d04c83d3d1dedea",
+					"name": "食材",
+					"banner": "http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/ef49d35222390ce909f2b28c64d41cf8.png",
+					"createdAt": "2016-02-20T06:54:47.996Z",
+					"updatedAt": "2020-06-10T01:55:49.583Z"
+				},
+				{
+					"id": "56c80dc031da9e480de1cb49",
+					"name": "零食",
+					"banner": "http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/c3fa78a5dbb036737b51af3a777aa590.png",
+					"createdAt": "2016-02-20T06:54:56.243Z",
+					"updatedAt": "2020-06-10T02:00:10.197Z"
+				},
+				{
+					"id": "56c80dc383af652643474b6d",
+					"name": "牛奶",
+					"banner": "http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/7c14ff28b4a15d3a3af2c53356e6435a.png",
+					"createdAt": "2016-02-20T06:54:59.891Z",
+					"updatedAt": "2020-06-10T01:59:00.266Z"
+				},
+				{
+					"id": "56c80dc88d04c83d3d1dedf3",
+					"name": "蔬菜",
+					"banner": "http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/165f65aa5d8c3f09a55ab02ba4adf6e2.png",
+					"createdAt": "2016-02-20T06:55:04.285Z",
+					"updatedAt": "2020-06-10T02:05:58.074Z"
+				}
+			],
+			currentIndex: 0,
+			dataList: [],
+			bannerUrl: '',
+			skip: 0,
+			haveMoreData: true,
+			refresherTriggered: false,
+			wareTypeId: ''
+		}
+	},
+	methods: {
+		apiready() {
+			if (api.setStatusBarStyle) {
+				api.setStatusBarStyle({
+					style: 'dark',
+					color: '#e1017e'
+				});
+			}
+			api.addEventListener({
+				name: 'fnSelectCity'
+			}, ret => {
+				this.data.cityName = ret.value.name
+				api.toast({
+					msg: '选择城市' + ret.value.name,
+					location: 'middle'
+				})
+				api.closeFrame({
+					name: 'citySelector'
+				})
+			})
+		},
+
+		fnOpenCitySelectorFrame() {
+			api.openFrame({
+				name: 'citySelector',
+				url: '../cityselector/cityselector.stml',
+				bgColor: 'rgba(0, 0, .3, #000)'
+			})
+		},
+
+		fnSetNavMenuIndex(index, name) {
+			console.log(name)
+			api.toast({
+				msg: `当前点击tab名称为: ${name}`,
+				location: 'middle'
+			})
+		},
+
+		fnOpenPersonalCenterWin() {
+			api.openWin({
+				name: 'personalcenter',
+				url: '../personalcenter/personalcenter.stml'
+			});
+		},
+		onrefresherrefresh() {
+			api.toast({
+				msg:'更新数据!',
+				location: 'middle'
+			})
+		},
+		onscrolltolower() {
+			console.log('滑到底部获取数据!')
+		},
+		fnOpenDetailWin(id, wareCount) {
+			api.openWin({
+				name: 'ware' + id,
+				url: '../ware/ware.stml',
+				pageParam: {
+					wareId: id,
+					wareCount: wareCount
+				},
+				animation: {
+					type: "fade"
+				}
+			});
+		},
+		fnMinus(e) {
+			api.toast({
+				msg:'减少购买数量!',
+				location: 'middle'
+			})
+		},
+		fnAdd(e) {
+			api.toast({
+				msg:'增加购买数量!',
+				location: 'middle'
+			})
+		}
+	}
+}
+</script>
+<style>
+.main {
+	height: 100%;
+}
+
+.header-part {
+	background-color: #e1017e;
+}
+
+.header-nav {
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 50px;
+}
+
+.header-left {
+	flex-direction: row;
+	align-items: center;
+	position: absolute;
+	left: 10px;
+	width: 100px;
+	height: 100%;
+}
+
+.header-left:active {
+	opacity: 0.8;
+}
+
+.header-left-arrow {
+	width: 13px;
+	height: 8px;
+	transition-property: transform;
+	transition-duration: 200ms;
+	transform: rotate(0);
+	margin-right: 4px;
+}
+
+.header-left-arrow-active {
+	transform: rotate(180deg);
+}
+
+.header-left-city {
+	font-size: 14px;
+	color: #fff;
+}
+
+.header-title {
+	color: white;
+	font-size: 18px;
+}
+
+.header-right {
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 40px;
+	height: 100%;
+}
+
+.header-right:active {
+	opacity: 0.8;
+}
+
+.header-right-icon {
+	width: 30px;
+	height: 30px;
+}
+
+.nav {
+	width: 100%;
+	height: 40px;
+	background-color: #e1017e;
+	white-space: nowrap;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.nav-menu {
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	font-size: 13px;
+	color: #f973b8;
+}
+
+.nav-menu-selected {
+	color: #fff;
+	font-weight: bolder;
+}
+
+.warelist {
+	width: 100%;
+	flex: 1;
+	overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.header {
+	width: 100%;
+	padding: 4px 8px;
+	box-sizing: border-box;
+	background-color: white;
+}
+
+.banner {
+	width: 100%;
+}
+
+.cell {
+	height: 130px;
+	padding: 0 8px;
+}
+
+.container {
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	border-bottom: 0.5px solid #d1d1d1;
+}
+
+.container:active {
+	background-color: #f8f8f8;
+}
+
+.thumbnail {
+	width: 100px;
+	height: 100px;
+}
+
+.info {
+	flex: 1;
+	height: 100px;
+	padding-left: 8px;
+	justify-content: center;
+}
+
+.info-name {
+	font-size: 16px;
+	color: #000;
+	font-weight: 500;
+}
+
+.info-description {
+	font-size: 14px;
+	color: gray;
+}
+
+.info-price {
+	font-size: 14px;
+	color: #e3007f;
+}
+
+.info-origin-price {
+	font-size: 11px;
+	color: #c0c0c0;
+	text-decoration: line-through;
+}
+
+.control {
+	flex-direction: row;
+	position: absolute;
+	right: 0;
+	bottom: 20px;
+}
+
+.minus,
+.add {
+	display: flex;
+	width: 25px;
+	height: 25px;
+}
+
+.minus:active {
+	opacity: 0.7;
+}
+
+.add:active {
+	opacity: 0.7;
+}
+
+.none {
+	display: none;
+}
+
+.count {
+	display: block;
+	width: 40px;
+	height: 24px;
+	line-height: 24px;
+	margin: 0 5px;
+	color: #444;
+	font-size: 14px;
+	text-align: center;
+	border-radius: 12px;
+	border: 1px solid #ddd;
+	background-color: #fff;
+}
+
+.footer {
+	height: 44px;
+	justify-content: center;
+	align-items: center;
+}
+
+.loadDesc {
+	width: 200px;
+    line-height: 44px;
+	text-align: center;
+    font-size: 14px;
+    color: #999;
+}
+
+.minicart {
+	position: absolute;
+	bottom: 110px;
+}
+
+.cityselect {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+</style>

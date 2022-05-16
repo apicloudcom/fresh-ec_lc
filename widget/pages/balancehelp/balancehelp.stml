@@ -1,0 +1,78 @@
+<template>
+    <safe-area class="main">
+        <view class="nav-header">
+            <view class="nav-header-button nav-left-button" @click="onLeftButton">
+                <image src="../../image/back.png" mode="widthFix" class="nav-bar-left-img" />
+            </view>
+            <text class="nav-header-title">余额帮助</text>
+            <view></view>
+        </view>
+		<view class="help-content">
+			<text class="help-text" style="padding-bottom: 4px;">关于余额</text>
+            <text class="help-text">1）余额是可以在应用内进行支付的货币；</text>
+            <text class="help-text">2）可以通过每日签到、自助充值、卡卷兑换、红包分享等方式获得；</text>
+            <text class="help-text">3）永久有效，不支持提现。</text>
+		</view>
+    </safe-area>
+</template>
+<script>
+import navigationBar from "../../components/navigationBar.stml";
+
+export default {
+    name: 'balancehelp',
+    data() {
+        return {}
+    },
+    methods: {
+        apiready(){
+            
+        },
+        onLeftButton() {
+            api.closeWin()
+        }
+    }
+}
+</script>
+<style scoped>
+    .text {
+        color: #444;
+        margin: 10px;
+    }
+    .nav-header {
+        background-color: #e3007f;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 44px;
+    }
+    .nav-header-title {
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .nav-header-button {
+        flex-direction: row;
+        align-items: center;
+        min-width:44px;
+        height: 100%;
+    }
+    .nav-header-button:active {
+        opacity: 0.5;
+    }
+    .nav-left-button {
+        justify-content: flex-start;
+        padding-left: 10px;
+    }
+    .nav-bar-left-img {
+        width: 11px;
+    }
+    .help-content {
+        padding: 16px;
+    }
+    .help-text {
+        font-size: 14px;
+        color: #666;
+        line-height: 24px;
+    }
+</style>

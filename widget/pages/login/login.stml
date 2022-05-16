@@ -1,0 +1,175 @@
+<template>
+	<safe-area class="main">
+		<view class="nav-header">
+			<view class="nav-header-button nav-left-button" @click="onLeftButton">
+				<image src="../../image/back.png" mode="widthFix" class="nav-bar-left-img" />
+			</view>
+			<text class="nav-header-title">会员登录</text>
+			<view class="nav-header-button nav-right-button" @click="onRightButton">
+				<text class="nav-header-text">注册</text>
+			</view>
+		</view>
+		<scroll-view class="scrollView" scroll-y='true'>
+			<view class="container">
+				<input id="username" class="input" placeholder="用户名" />
+				<input id="password" class="input" type="password" placeholder="密码" />
+				<text class="btn" onclick={this.fnLogin}>登录</text>
+				<view class="third-login">
+					<text class="third-login-desc">第三方登录</text>
+					<view class="icon-container">
+						<image class="icon" data-type="Apple" src="../../image/logo_apple.png" @click="fnThirdLogin('Apple')" />
+						<image class="icon" data-type="微信" src="../../image/logo_wx.png" @click="fnThirdLogin('微信')" />
+					</view>
+				</view>
+			</view>
+		</scroll-view>
+	</safe-area>
+</template>
+<script>
+export default {
+	name: 'login',
+	data() {
+		return {
+		}
+	},
+	methods: {
+		apiready() {
+			document.getElementById('username').focus();
+		},
+        onLeftButton() {
+            api.closeWin();
+        },
+		// 登录
+		fnLogin() {
+			var that = this;
+			var usernameValue = document.getElementById('username').value;
+			var passwordValue = document.getElementById('password').value;
+			if (!usernameValue) {
+				this.toast('请输入用户名');
+				return;
+			}
+			if (!passwordValue) {
+				this.toast('请输入密码');
+				return;
+			}
+            this.toast('登录')
+		},
+
+		toast(msg) {
+			api.toast({
+				msg: msg,
+				location: 'middle',
+				global: true
+			});
+		},
+
+		onRightButton() {
+			api.openWin({
+				name: 'register',
+				url: '../register/register.stml'
+			});
+		},
+
+		fnThirdLogin(type) {
+			this.toast(type + '登录');
+		}
+	}
+}
+</script>
+<style>
+.main {
+	width: 100%;
+	height: 100%;
+}
+.scrollView {
+	flex: 1;
+}
+.nav-header {
+	background-color: #e3007f;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 44px;
+}
+.nav-header-title {
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+}
+.nav-header-button {
+	flex-direction: row;
+	align-items: center;
+	min-width: 44px;
+	height: 100%;
+}
+.nav-header-button:active {
+	opacity: 0.5;
+}
+.nav-left-button {
+	justify-content: flex-start;
+	padding-left: 10px;
+}
+.nav-bar-left-img {
+	width: 11px;
+}
+.nav-right-button {
+	justify-content: flex-end;
+	padding-right: 10px;
+}
+.nav-header-text {
+	color: #fff;
+	font-size: 17px;
+}
+.container {
+	padding: 20px;
+}
+
+.input {
+	width: 100%;
+	height: 40px;
+	margin-bottom: 30px;
+	border: none;
+	border-bottom: 1px solid #ddd;
+	font-size: 14px;
+	color: #333;
+}
+
+.btn {
+	height: 50px;
+	background-color: #e3007f;
+	line-height: 50px;
+	color: #fff;
+	font-size: 24px;
+	text-align: center;
+	border-radius: 8px;
+}
+
+.btn:active {
+	opacity: 0.8;
+}
+
+.third-login {
+	align-items: center;
+	margin-top: 30px;
+}
+
+.third-login-desc {
+	text-align: center;
+	font-size: 14px;
+	color: #333;
+}
+
+.icon-container {
+	flex-direction: row;
+	justify-content: center;
+}
+
+.icon {
+	width: 50px;
+	height: 50px;
+	margin: 8px;
+	border-radius: 25px;
+	background-color: gray;
+}
+</style>

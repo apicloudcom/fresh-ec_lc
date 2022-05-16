@@ -1,0 +1,363 @@
+<template>
+	<safe-area class="main">
+		<view class="nav-header">
+			<view class="nav-header-button nav-left-button" @click="onLeftButton">
+				<image src="../../image/back.png" mode="widthFix" class="nav-bar-left-img" />
+			</view>
+			<text class="nav-header-title">商品详情</text>
+			<view class="nav-header-button nav-right-button" @click="onRightButton">
+				<text class="nav-header-text">分享</text>
+			</view>
+		</view>
+		<scroll-view class="scrollView" scroll-y='true'>
+			<view class="swiper">
+				<img class="swiper-img"
+					src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/a3f416e37b4a79d69ad63b4b9d711fd9.jpg"
+					alt="img" />
+			</view>
+			<view class="info">
+				<text class="name">泰国龙眼 2斤</text>
+				<text class="description">肉肉的 甜甜的</text>
+				<view class="info-price">
+					<text class="price">￥29.9</text>
+					<text class="origin-price">￥39.9</text>
+				</view>
+				<text class="stock">仅剩12件</text>
+			</view>
+			<view class="recommend">
+				<text class="recommendTitle">推荐商品</text>
+				<view class="recommendList">
+					<view class="recommendItem" data-id={'56c94a0426f863e874c76caf'}
+						@click="fnOpenDetailWin('56c94a0426f863e874c76caf', 1)">
+						<img class="recommend-thumbnail"
+							src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/116d90e46e369dbffd0198026efe35ab.jpg"
+							placeholder="../../image/default_square.png" />
+						<text class="recommend-info-name">佳沛绿奇异果 4个</text>
+						<text class="recommend-info-price">￥18.9</text>
+					</view>
+					<view class="recommendItem" data-id={'56c94a0426f863e874c76cb1'}
+						@click="fnOpenDetailWin('56c94a0426f863e874c76cb1', 1)">
+						<img class="recommend-thumbnail"
+							src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/5bfeda41003fba5faad8c58f413ac900.jpg"
+							placeholder="../../image/default_square.png" />
+						<text class="recommend-info-name">四川丑柑 2斤</text>
+						<text class="recommend-info-price">￥24.9</text>
+					</view>
+				</view>
+			</view>
+			<view class="detail">
+				<text class="detailTitle">商品详情</text>
+				<view class="goods-detail">
+					<text class="goods-detail-text">肉肉的 甜甜的</text>
+					<img class="goods-detail-img"
+						src="http://a8f7e260bce0114731a0.qiniucdn.apicloud-system.com/apicloud/bf57b9745c1ee8a13460c3e773aab37c.jpg"
+						alt="img" />
+				</view>
+			</view>
+		</scroll-view>
+		<view class="footer">
+			<image src="../../image/minus.png" class="minus" onclick="fnMinus();" />
+			<text class="count">1</text>
+			<image src="../../image/add.png" class="add" onclick="fnAdd();" />
+			<image src="../../image/buynow.png" class="buy-button" onclick={this.fnOpenOrderWin} />
+		</view>
+		<view class="minicart">
+			<view class="__main" onclick={this.fnOpenShoppingCartWin}>
+				<text class="__amount">￥29.9</text>
+				<text class="__count">1</text>
+			</view>
+		</view>
+	</safe-area>
+</template>
+<script>
+export default {
+	name: 'ware',
+	data() {
+		return {};
+	},
+	methods: {
+		onLeftButton() {
+			api.closeWin();
+		},
+		onRightButton() {
+			api.openFrame({
+				name: 'sharePage',
+				url: '../share_frame/share_frame.stml'
+			});
+		},
+		fnMinus() {
+			api.toast({
+				msg: '减少商品数量'
+			})
+		},
+		fnAdd() {
+			api.toast({
+				msg: '增加商品数量'
+			})
+		},
+		fnOpenDetailWin(id, wareCount) {
+			api.openWin({
+				name: 'ware' + id,
+				url: '../ware/ware.stml',
+				pageParam: {
+					wareId: id,
+					wareCount: wareCount
+				},
+				animation: {
+					type: "fade"
+				}
+			});
+		},
+		fnOpenOrderWin() {
+			api.openWin({
+				name: 'order',
+				url: '../order/order.stml'
+			});
+		},
+		// 打开购物车Window
+		fnOpenShoppingCartWin() {
+			api.openWin({
+				name: 'shoppingcart',
+				url: '../shoppingcart/shoppingcart.stml'
+			});
+		}
+	}
+};
+</script>
+<style>
+.main {
+	width: 100%;
+	height: 100%;
+	background: #f3f3f3;
+	position: relative;
+}
+.nav-header {
+	background-color: #e3007f;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 44px;
+}
+.nav-header-title {
+	color: #fff;
+	font-size: 18px;
+	font-weight: bold;
+}
+.nav-header-button {
+	flex-direction: row;
+	align-items: center;
+	min-width: 44px;
+	height: 100%;
+}
+.nav-header-button:active {
+	opacity: 0.5;
+}
+.nav-left-button {
+	justify-content: flex-start;
+	padding-left: 10px;
+}
+.nav-bar-left-img {
+	width: 11px;
+}
+.nav-right-button {
+	justify-content: flex-end;
+	padding-right: 10px;
+}
+.nav-header-text {
+	color: #fff;
+	font-size: 17px;
+}
+.scrollView {
+	width: 100%;
+	flex: 1;
+	overflow: scroll;
+}
+.swiper {
+	width: 100%;
+	height: 300px;
+	background-color: #fff;
+}
+.swiper-img {
+	width: 100%;
+	height: 300px;
+}
+.info {
+	padding: 20px;
+	margin-bottom: 10px;
+	background-color: #fff;
+}
+.name {
+	color: #000;
+	font-size: 20px;
+}
+.description {
+	color: #888;
+	font-size: 15px;
+	margin-top: 4px;
+}
+.info-price {
+	flex-direction: row;
+	align-items: flex-end;
+	margin-top: 10px;
+}
+.price {
+	color: #e3007f;
+	font-size: 24px;
+	font-weight: bolder;
+}
+.origin-price {
+	font-size: 14px;
+	color: #888;
+	text-decoration: line-through;
+}
+.stock {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	font-size: 14px;
+	color: #888;
+}
+.recommend {
+	height: 240px;
+	padding: 20px;
+	background-color: #fff;
+	white-space: nowrap;
+	border-bottom: 10px solid #f3f3f3;
+}
+.recommendTitle {
+	font-size: 18px;
+	color: #000;
+}
+.recommendList {
+	display: flex;
+	flex-direction: row;
+	flex: 1;
+	margin-top: 10px;
+	flex-wrap: wrap;
+}
+.recommendItem {
+	width: 100px;
+	height: 100%;
+	margin-right: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.recommend-thumbnail {
+	width: 100px;
+	height: 100px;
+	border-radius: 5px;
+}
+.recommend-info-name {
+	margin-top: 5px;
+	font-size: 12px;
+	line-height: 24px;
+	color: #333;
+}
+.recommend-info-price {
+	line-height: 20px;
+	font-size: 12px;
+	color: #e3007f;
+}
+.detail {
+	padding: 20px 20px 0;
+	margin-bottom: 10px;
+	background-color: #fff;
+}
+.goods-detail {
+	padding: 16px 0;
+}
+.goods-detail-text {
+	font-size: 14px;
+	color: #333;
+	font-weight: 400;
+	margin-bottom: 12px;
+}
+.goods-detail-image {
+	width: 100%;
+}
+.detailTitle {
+	font-size: 18px;
+}
+.rich-text {
+	margin-top: 10px;
+}
+.footer {
+	flex-direction: row;
+	align-items: center;
+	padding-left: 10px;
+	width: 100%;
+	height: 50px;
+	background-color: black;
+}
+.minus,
+.add {
+	width: 25px;
+	height: 25px;
+}
+.count {
+	width: 40px;
+	height: 24px;
+	line-height: 24px;
+	margin: 0 5px;
+	color: #444;
+	font-size: 14px;
+	text-align: center;
+	border-radius: 12px;
+	background-color: #fff;
+}
+.buy-button {
+	position: absolute;
+	width: 112px;
+	height: 40px;
+	right: 0;
+	top: 5px;
+}
+.minicart {
+	position: fixed;
+	bottom: 110px;
+}
+.safe-area {
+	background-color: #000;
+}
+.sharepage {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.text_1 {
+	position: absolute;
+}
+.text_2 {
+	position: relative;
+}
+.__main {
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	align-self: flex-start;
+	height: 34px;
+	min-width: 34px;
+	border-top-right-radius: 17px;
+	border-bottom-right-radius: 17px;
+	background-color: #e3007f;
+}
+.__amount {
+	color: #fff;
+	font-size: 12px;
+	margin-right: 4px;
+}
+.__count {
+	display: block;
+	margin-right: 2px;
+	min-width: 20px;
+	height: 20px;
+	line-height: 20px;
+	border-radius: 10px;
+	background-color: #fff;
+	text-align: center;
+	color: #e3007f;
+}
+</style>
