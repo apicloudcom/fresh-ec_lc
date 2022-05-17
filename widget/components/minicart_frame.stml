@@ -7,7 +7,7 @@
 <script>
 import $kn from '../script/kn.js'
 export default{
-    name:'minicart',
+    name:'minicart_frame',
     data(){
         return{
             amount:0,

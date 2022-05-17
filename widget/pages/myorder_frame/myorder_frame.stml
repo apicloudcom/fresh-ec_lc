@@ -7,7 +7,7 @@
 </template>
 <script>
 export default {
-	name: 'myorderframe',
+	name: 'myorder_frame',
 	data() {
 		return {
 			haveData: false

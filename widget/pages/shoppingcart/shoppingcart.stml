@@ -111,10 +111,7 @@ export default {
 		fnOpenOrderWin() {
 			api.openWin({
 				name: 'order',
-				url: '../order/order.stml',
-				pageParam: {
-					dataList: dataList
-				}
+				url: '../order/order.stml'
 			});
 		}
 	}
