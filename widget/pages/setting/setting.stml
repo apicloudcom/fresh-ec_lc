@@ -1,5 +1,5 @@
 <template>
-	<safe-area class="main">
+	<view class="main">
 		<view class="nav-header">
 			<view class="nav-header-button nav-left-button" @click="onLeftButton">
 				<image src="../../image/back.png" mode="widthFix" class="nav-bar-left-img" />
@@ -26,7 +26,7 @@
 			</view>
 		</view>
 		<text class="button" onclick="fnLogout();">退出登录</text>
-	</safe-area>
+	</view>
 </template>
 <script>
 import $kn from "../../script/kn.js"
@@ -99,6 +99,7 @@ export default {
 <style>
 .main {
 	height: 100%;
+	padding-bottom: 16px;
 }
 .nav-header {
 	background-color: #e3007f;
@@ -106,7 +107,8 @@ export default {
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
-	height: 44px;
+	height: 80px;
+	padding-top: 35px;
 	flex-shrink: 0;
 }
 .nav-header-title {
@@ -154,7 +156,9 @@ export default {
 }
 
 .item-right {
+	display: flex;
 	flex-direction: row;
+	align-items: center;
 }
 
 .item-title {

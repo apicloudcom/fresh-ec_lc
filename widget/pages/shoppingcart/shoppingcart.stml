@@ -1,5 +1,5 @@
 <template>
-	<safe-area class="main">
+	<view class="main">
 		<view class="nav-header">
 			<view class="nav-header-button nav-left-button" @click="onLeftButton">
 				<img src="../../image/back.png" mode="widthFix" class="nav-bar-left-img" />
@@ -59,7 +59,7 @@
 				<img class="buy-button" src="../../image/buy.png" @click="fnOpenOrderWin" />
 			</view>
 		</view>
-	</safe-area>
+	</view>
 </template>
 <script>
 import $kn from "../../script/kn.js"
@@ -129,7 +129,8 @@ export default {
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
-	height: 44px;
+	height: 80px;
+	padding-top: 35px;
 	flex-shrink: 0;
 }
 .nav-header-title {
@@ -272,10 +273,11 @@ export default {
 	background-color: #fff;
 }
 .footer {
+	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	width: 100%;
-	height: 50px;
+	padding: 16px 0 30px;
 	border-top: 1px solid #d1d1d1;
 }
 .left {

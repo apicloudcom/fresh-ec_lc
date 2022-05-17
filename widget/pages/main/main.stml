@@ -1,5 +1,5 @@
 <template>
-	<safe-area class="main">
+	<view class="main">
 		<view class="header-part">
 			<view class="header-nav">
 				<view class="header-left" @click="fnOpenCitySelectorFrame">
@@ -20,8 +20,11 @@
 			<text class="nav-menu" @click="fnSetNavMenuIndex(4, '牛奶')">牛奶</text>
 			<text class="nav-menu" @click="fnSetNavMenuIndex(5, '蔬菜')">蔬菜</text>
 		</view>
-		<scroll-view scroll-y='true' class="warelist" enable-back-to-top
-			refresher-triggered={false} onrefresherrefresh={this.onrefresherrefresh}
+		<scroll-view
+			scroll-y='true'
+			class="warelist"
+			refresher-triggered={false}
+			onrefresherrefresh={this.onrefresherrefresh}
 			onscrolltolower={this.onscrolltolower}>
 			<view class="header">
 				<img class="banner"
@@ -181,7 +184,7 @@
 		<view class="minicart">
 			<minicart></minicart>
 		</view>
-	</safe-area>
+	</view>
 </template>
 <script>
 export default {
@@ -335,6 +338,7 @@ export default {
 	align-items: center;
 	width: 100%;
 	height: 50px;
+	margin-top: 35px;
 }
 
 .header-left {
@@ -419,8 +423,6 @@ export default {
 .warelist {
 	width: 100%;
 	flex: 1;
-	overflow-y: scroll;
-    overflow-x: hidden;
 }
 
 .header {

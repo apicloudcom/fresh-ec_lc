@@ -1,5 +1,5 @@
 <template>
-	<safe-area class="main">
+	<view class="main">
 		<view class="nav-header">
 			<view class="nav-header-button nav-left-button" @click="onLeftButton">
 				<image src="../../image/back.png" mode="widthFix" class="nav-bar-left-img" />
@@ -30,7 +30,7 @@
 				<text class="sendBtn" onclick="sendMsg();">发送</text>
 			</view>
 		</view>
-	</safe-area>
+	</view>
 </template>
 <script>
 import navigationBar from "../../components/navigationBar.stml"
@@ -63,7 +63,8 @@ export default {
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
-	height: 44px;
+	height: 80px;
+	padding-top: 35px;
 	flex-shrink: 0;
 }
 .nav-header-title {
@@ -175,7 +176,6 @@ export default {
 }
 .sendBtn {
 	margin-right: 10px;
-	margin-bottom: 7px;
 	height: 40px;
 	line-height: 40px;
 	border: 1px solid #dfdfdf;
