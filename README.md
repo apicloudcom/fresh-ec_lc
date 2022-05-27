@@ -79,4 +79,4 @@
 
 ## 项目源码地址
 
-http://git.yonyou.com/APICloud-CF/fresh-ec_lc
+https://github.com/apicloudcom/fresh-ec_lc
